@@ -75,13 +75,46 @@
             background-color: #374151;
             border-color: #4b5563;
         }
+        
+        /* Multilingual Dropdown */
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1f2937;
+            min-width: 120px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 0.5rem;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .language-dropdown:hover .language-dropdown-content {
+            display: block;
+        }
+
+        .language-dropdown-content a {
+            color: #E0E0E0;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .language-dropdown-content a:hover {
+            background-color: #2d3748;
+        }
 
     </style>
 </head>
 
 <body class="antialiased">
 
-    <!-- Header -->
     <header class="sticky top-0 z-50 glassmorphism shadow-lg">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -89,17 +122,42 @@
                 <span class="text-2xl font-bold text-white">ANNADATA SAHAYAKA SEVA</span>
             </div>
             <div class="hidden md:flex items-center space-x-6">
-                <a href="#solutions" class="text-gray-300 hover:text-green-400 transition">Solutions</a>
                 <a href="#dashboard" class="text-gray-300 hover:text-green-400 transition">Dashboard</a>
                 <a href="#advisory" class="text-gray-300 hover:text-green-400 transition">Advisory</a>
+                <a href="#pest-diagnosis" class="text-gray-300 hover:text-green-400 transition">Pest Diagnosis</a>
+                <a href="#schemes" class="text-gray-300 hover:text-green-400 transition">Schemes</a>
+                <a href="#learning-hub" class="text-gray-300 hover:text-green-400 transition">Learn</a>
                 <a href="#market" class="text-gray-300 hover:text-green-400 transition">Market</a>
             </div>
-            <button class="btn-primary px-4 py-2 rounded-lg font-semibold text-white">Get Started</button>
+            <div class="flex items-center space-x-4">
+                 <div class="language-dropdown">
+                    <button class="flex items-center space-x-1 px-3 py-2 rounded-lg font-semibold text-white bg-gray-700/50">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span>Language</span>
+                    </button>
+                    <div class="language-dropdown-content">
+                        <a href="#">English</a>
+                        <a href="#">हिन्दी (Hindi)</a>
+                        <a href="#">తెలుగు (Telugu)</a>
+                        <a href="#">தமிழ் (Tamil)</a>
+                    </div>
+                </div>
+                <button class="btn-primary px-4 py-2 rounded-lg font-semibold text-white">Get Started</button>
+            </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <div id="emergency-alert" class="hidden bg-red-800 text-white sticky top-[68px] z-40">
+             <div class="container mx-auto py-3 px-6 flex items-center justify-between">
+                 <div class="flex items-center space-x-3">
+                     <i data-lucide="siren" class="w-6 h-6 animate-pulse"></i>
+                     <span class="font-bold">Urgent Pest Alert: Fall Armyworm outbreak reported in your region. Inspect your Maize and Jowar crops immediately.</span>
+                 </div>
+                 <button id="close-alert-btn" class="text-white opacity-75 hover:opacity-100 text-2xl">&times;</button>
+             </div>
+         </div>
+
         <section class="py-24 md:py-32 text-center bg-cover bg-center" style="background-image: linear-gradient(rgba(18, 24, 38, 0.9), rgba(18, 24, 38, 0.9)), url('https://placehold.co/1600x900/121826/1f2937?text=Farm+Landscape');">
             <div class="container mx-auto px-6">
                 <div class="max-w-4xl mx-auto">
@@ -107,18 +165,17 @@
                     <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 reveal">Smart Crop Advisory for Every Farmer</h1>
                     <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 reveal">AI-powered, multilingual platform providing real-time crop guidance, soil analysis, weather alerts, and market insights. Designed for small and marginal farmers across India.</p>
                     <div class="flex justify-center items-center space-x-4 reveal">
-                        <button class="btn-primary px-6 py-3 rounded-lg font-bold text-white flex items-center space-x-2">
+                        <a href="#advisory" class="btn-primary px-6 py-3 rounded-lg font-bold text-white flex items-center space-x-2">
                             <i data-lucide="bar-chart"></i>
                             <span>Get Crop Advisory</span>
-                        </button>
-                        <button class="btn-secondary px-6 py-3 rounded-lg font-bold text-white flex items-center space-x-2">
+                        </a>
+                        <a href="#voice" class="btn-secondary px-6 py-3 rounded-lg font-bold text-white flex items-center space-x-2">
                              <i data-lucide="mic"></i>
                             <span>Voice Support</span>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Stats -->
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto reveal">
                     <div class="text-center">
                          <i data-lucide="users" class="mx-auto text-green-400 w-12 h-12 mb-2"></i>
@@ -139,108 +196,83 @@
             </div>
         </section>
 
-        <!-- Solutions Section -->
-        <section id="solutions" class="py-20 bg-[#1f2937]">
-             <div class="container mx-auto px-6 text-center">
-                <div class="reveal">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">A Complete Agricultural Solution</h2>
-                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Everything farmers need to make informed decisions, increase productivity, and improve their livelihoods through technology.</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-                    <div class="feature-card p-6 rounded-lg text-center reveal">
-                         <i data-lucide="sparkles" class="mx-auto text-green-400 w-12 h-12 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-white">Real-time Crop Advisory</h3>
-                        <p class="text-gray-400 mt-2">Specific recommendations based on soil, weather, and crop history.</p>
-                    </div>
-                     <div class="feature-card p-6 rounded-lg text-center reveal">
-                         <i data-lucide="flask-conical" class="mx-auto text-green-400 w-12 h-12 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-white">Soil Health Analysis</h3>
-                        <p class="text-gray-400 mt-2">Comprehensive soil testing recommendations and fertilizer guidance.</p>
-                    </div>
-                     <div class="feature-card p-6 rounded-lg text-center reveal">
-                        <i data-lucide="cloudy" class="mx-auto text-green-400 w-12 h-12 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-white">Weather Alerts</h3>
-                        <p class="text-gray-400 mt-2">Weather-based alerts and predictive insights for farming decisions.</p>
-                    </div>
-                     <div class="feature-card p-6 rounded-lg text-center reveal">
-                         <i data-lucide="bug" class="mx-auto text-red-400 w-12 h-12 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-white">Pest Detection</h3>
-                        <p class="text-gray-400 mt-2">AI-powered pest and disease detection through image upload.</p>
-                    </div>
-                </div>
-             </div>
-        </section>
-
-        <!-- Smart Farm Dashboard Section -->
         <section id="dashboard" class="py-20">
             <div class="container mx-auto px-6">
                 <div class="text-center reveal mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-white">Smart Farm Dashboard</h2>
-                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Real-time insights and personalized recommendations for your farm.</p>
+                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Your farm's real-time status for Hyderabad, Telangana.</p>
                 </div>
 
                 <div class="max-w-5xl mx-auto glassmorphism p-4 sm:p-6 rounded-xl reveal">
-                    <!-- Dashboard Tabs -->
                     <div id="dashboard-tabs" class="flex flex-wrap items-center justify-center sm:justify-start space-x-2 rounded-lg p-1 bg-gray-900/50 mb-6">
-                        <button data-tab="overview" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-active">Overview</button>
-                        <button data-tab="weather" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Weather</button>
+                        <button data-tab="weather" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-active">Weather</button>
+                        <button data-tab="overview" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Overview</button>
                         <button data-tab="alerts" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Alerts</button>
                         <button data-tab="tips" class="dashboard-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Tips</button>
                     </div>
                     
-                    <!-- Dashboard Content -->
                     <div id="dashboard-content-area">
-                        <!-- Overview Content -->
-                        <div id="overview-content" class="dashboard-tab-content">
+                        <div id="overview-content" class="dashboard-tab-content hidden">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <h4 class="text-sm font-semibold text-gray-400">Farm Location</h4>
-                                    <p class="text-lg font-bold text-white mt-1">Pune, Maharashtra</p>
-                                    <p class="text-xs text-gray-500">18.5204°N, 73.8567°E</p>
+                                    <p class="text-lg font-bold text-white mt-1">Hyderabad, Telangana</p>
+                                    <p class="text-xs text-gray-500">17.3850° N, 78.4867° E</p>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <h4 class="text-sm font-semibold text-gray-400">Current Crop</h4>
                                     <p class="text-lg font-bold text-white mt-1">Cotton</p>
-                                    <p class="text-xs text-gray-500">Sown: 15 June 2024</p>
+                                    <p class="text-xs text-gray-500">Sown: 20 June 2025</p>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <h4 class="text-sm font-semibold text-gray-400">Farm Size</h4>
                                     <p class="text-lg font-bold text-white mt-1">2.5 acres</p>
-                                    <p class="text-xs text-gray-500">Expected harvest: 15 Nov 2024</p>
+                                    <p class="text-xs text-gray-500">Expected harvest: 20 Nov 2025</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Weather Content -->
-                        <div id="weather-content" class="dashboard-tab-content hidden">
+                        <div id="weather-content" class="dashboard-tab-content">
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
                                     <h4 class="text-sm text-gray-400">Temperature</h4>
-                                    <p class="text-2xl font-bold text-white mt-1">28°C</p>
+                                    <p class="text-2xl font-bold text-white mt-1">29°C</p>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
                                     <h4 class="text-sm text-gray-400">Humidity</h4>
-                                    <p class="text-2xl font-bold text-white mt-1">65%</p>
+                                    <p class="text-2xl font-bold text-white mt-1">75%</p>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg text-center">
                                     <h4 class="text-sm text-gray-400">Wind Speed</h4>
-                                    <p class="text-2xl font-bold text-white mt-1">12 km/h</p>
+                                    <p class="text-2xl font-bold text-white mt-1">15 km/h</p>
                                 </div>
                                  <div class="bg-gray-800/50 p-4 rounded-lg text-center">
                                     <h4 class="text-sm text-gray-400">Rainfall (24h)</h4>
-                                    <p class="text-2xl font-bold text-white mt-1">15mm</p>
+                                    <p class="text-2xl font-bold text-white mt-1">5mm</p>
                                 </div>
                             </div>
                             <div class="bg-gray-800/50 p-4 rounded-lg">
-                                <h4 class="font-semibold text-white">7-Day Forecast</h4>
-                                <p class="text-sm text-gray-400">Partly cloudy with chance of rain</p>
-                                <button class="mt-3 text-sm text-green-400 font-semibold hover:text-green-300">View Detailed Forecast &rarr;</button>
+                                <h4 class="font-semibold text-white">3-Day Forecast</h4>
+                                <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                                    <div><p class="font-semibold">Today (Wed)</p><i data-lucide="cloud-drizzle" class="mx-auto w-8 h-8 my-1 text-blue-400"></i><p>30°/24°</p></div>
+                                    <div><p class="font-semibold">Tomorrow (Thu)</p><i data-lucide="cloudy" class="mx-auto w-8 h-8 my-1 text-gray-400"></i><p>31°/25°</p></div>
+                                    <div><p class="font-semibold">Friday</p><i data-lucide="cloud-sun" class="mx-auto w-8 h-8 my-1 text-yellow-400"></i><p>32°/25°</p></div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Alerts Content -->
                         <div id="alerts-content" class="dashboard-tab-content hidden">
                            <div class="space-y-4">
+                                <div class="bg-blue-900/30 border border-blue-700 p-4 rounded-lg flex justify-between items-start">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <i data-lucide="award" class="text-blue-400 w-5 h-5"></i>
+                                            <h4 class="font-semibold text-white">PM-KISAN installment credited. Check your bank account.</h4>
+                                        </div>
+                                        <p class="text-sm text-blue-300 mt-1 ml-7">30 minutes ago</p>
+                                    </div>
+                                    <span class="text-xs font-bold bg-blue-500 text-white px-2 py-1 rounded-full">Scheme</span>
+                               </div>
                                <div class="bg-red-900/30 border border-red-700 p-4 rounded-lg flex justify-between items-start">
                                     <div>
                                         <div class="flex items-center space-x-2">
@@ -261,36 +293,24 @@
                                     </div>
                                     <span class="text-xs font-bold bg-yellow-500 text-black px-2 py-1 rounded-full">Medium</span>
                                </div>
-                               <div class="bg-green-900/30 border border-green-700 p-4 rounded-lg flex justify-between items-start">
-                                    <div>
-                                        <div class="flex items-center space-x-2">
-                                            <i data-lucide="check-circle" class="text-green-400 w-5 h-5"></i>
-                                            <h4 class="font-semibold text-white">Pest monitoring report shows healthy crop status</h4>
-                                        </div>
-                                        <p class="text-sm text-green-300 mt-1 ml-7">2 days ago</p>
-                                    </div>
-                                    <span class="text-xs font-bold bg-green-500 text-black px-2 py-1 rounded-full">Low</span>
-                               </div>
                            </div>
                         </div>
 
-                        <!-- Tips Content -->
                         <div id="tips-content" class="dashboard-tab-content hidden">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <h4 class="font-semibold text-white">Today's Recommendations</h4>
                                     <ul class="mt-2 space-y-2 text-sm text-gray-300">
-                                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-400 mr-2 mt-0.5 shrink-0"></i>Apply nitrogen fertilizer (10kg/acre)</li>
                                         <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-400 mr-2 mt-0.5 shrink-0"></i>Monitor for bollworm in cotton</li>
-                                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-400 mr-2 mt-0.5 shrink-0"></i>Prepare drainage channels</li>
+                                        <li class="flex items-start"><i data-lucide="check" class="w-4 h-4 text-green-400 mr-2 mt-0.5 shrink-0"></i>Ensure proper soil moisture; avoid waterlogging</li>
                                     </ul>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <h4 class="font-semibold text-white">Market Insights</h4>
                                     <p class="text-sm text-gray-400">Best time to sell your produce</p>
-                                    <p class="text-3xl font-bold text-green-400 mt-2">₹5,200/quintal</p>
-                                    <p class="text-sm text-gray-300">Cotton prices trending up 8%</p>
-                                    <button class="mt-3 text-sm text-green-400 font-semibold hover:text-green-300">View Market Analysis &rarr;</button>
+                                    <p class="text-3xl font-bold text-green-400 mt-2">₹7,150/quintal</p>
+                                    <p class="text-sm text-green-300">Cotton prices trending up 2%</p>
+                                    <a href="#market" class="mt-3 text-sm text-green-400 font-semibold hover:text-green-300 inline-block">View Market Analysis &rarr;</a>
                                 </div>
                             </div>
                         </div>
@@ -299,7 +319,6 @@
             </div>
         </section>
 
-        <!-- AI Crop Advisory -->
         <section id="advisory" class="py-20 bg-[#1f2937]">
             <div class="container mx-auto px-6">
                 <div class="text-center reveal mb-12">
@@ -308,26 +327,24 @@
                 </div>
 
                 <div class="max-w-5xl mx-auto glassmorphism p-4 sm:p-6 rounded-xl reveal">
-                    <!-- Advisory Tabs -->
                     <div id="advisory-tabs" class="flex flex-wrap items-center justify-center sm:justify-start space-x-2 rounded-lg p-1 bg-gray-900/50 mb-6">
                         <button data-tab="details" class="advisory-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-active">Farm Details</button>
                         <button data-tab="recommendations" class="advisory-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Recommendations</button>
+                        <button data-tab="fertilizer" class="advisory-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Fertilizer & Pest Guide</button>
                         <button data-tab="calendar" class="advisory-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Crop Calendar</button>
                     </div>
 
-                    <!-- Advisory Content -->
                     <div id="advisory-content-area">
-                         <!-- Farm Details Content -->
-                        <div id="details-content" class="advisory-tab-content">
+                         <div id="details-content" class="advisory-tab-content">
                             <h3 class="font-semibold text-white mb-4">Enter Your Farm Details</h3>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="text-sm text-gray-400">Location (District, State)</label>
-                                    <input type="text" placeholder="e.g. Pune, Maharashtra" class="mt-1 w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <input type="text" value="Hyderabad, Telangana" class="mt-1 w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-green-500">
                                 </div>
                                  <div>
                                     <label class="text-sm text-gray-400">Farm Size (acres)</label>
-                                    <input type="text" placeholder="e.g. 2.5" class="mt-1 w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-green-500">
+                                    <input type="text" value="2.5" class="mt-1 w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-green-500">
                                 </div>
                                  <div>
                                     <label class="text-sm text-gray-400">Soil Type</label>
@@ -345,17 +362,12 @@
                                         <option>Rain-fed only</option>
                                     </select>
                                 </div>
-                                <div class="md:col-span-2">
-                                     <label class="text-sm text-gray-400">Additional Information (Optional)</label>
-                                     <textarea placeholder="Any specific requirements, previous crop history, challenges faced..." class="mt-1 w-full p-2 bg-gray-800 border border-gray-700 rounded-md text-white h-24 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
-                                </div>
                             </div>
                             <button id="get-recommendations-btn" class="mt-4 w-full md:w-auto btn-primary px-6 py-3 rounded-lg font-bold text-white flex items-center justify-center space-x-2">
                                 <span>Get AI Recommendations</span>
                             </button>
                         </div>
                         
-                        <!-- Recommendations Content -->
                         <div id="recommendations-content" class="advisory-tab-content hidden">
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div class="bg-gray-800/50 p-4 rounded-lg border border-green-500">
@@ -363,53 +375,47 @@
                                         <h3 class="text-xl font-bold text-white">Cotton</h3>
                                         <span class="text-xs font-bold bg-green-500 text-black px-2 py-1 rounded-full">Excellent</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 mt-2">Expected Profit: <b class="text-white">₹25,000-30,000/acre</b></p>
-                                    <div class="mt-4">
-                                        <h4 class="text-sm font-semibold text-green-400">Advantages</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>High market demand</li><li>Good soil match</li></ul>
-                                    </div>
-                                     <div class="mt-3">
-                                        <h4 class="text-sm font-semibold text-red-400">Challenges</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>Pest management required</li><li>Water intensive</li></ul>
-                                    </div>
-                                    <button class="mt-4 text-sm w-full text-center py-2 bg-gray-700 rounded-md hover:bg-gray-600">View Detailed Guide</button>
+                                    <p class="text-sm text-gray-400 mt-2">Expected Profit: <b class="text-white">₹30,000-35,000/acre</b></p>
                                 </div>
-                                 <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
+                                 <div class="bg-gray-800/50 p-4 rounded-lg border border-yellow-500">
                                     <div class="flex justify-between items-center">
                                         <h3 class="text-xl font-bold text-white">Soybean</h3>
                                         <span class="text-xs font-bold bg-yellow-500 text-black px-2 py-1 rounded-full">Good</span>
                                     </div>
-                                    <p class="text-sm text-gray-400 mt-2">Expected Profit: <b class="text-white">₹15,000-20,000/acre</b></p>
-                                    <div class="mt-4">
-                                        <h4 class="text-sm font-semibold text-green-400">Advantages</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>Less water requirement</li><li>Good protein crop</li></ul>
-                                    </div>
-                                     <div class="mt-3">
-                                        <h4 class="text-sm font-semibold text-red-400">Challenges</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>Market price volatility</li><li>Pest issues in rainy season</li></ul>
-                                    </div>
-                                    <button class="mt-4 text-sm w-full text-center py-2 bg-gray-700 rounded-md hover:bg-gray-600">View Detailed Guide</button>
-                                </div>
-                                <div class="bg-gray-800/50 p-4 rounded-lg border border-gray-600">
-                                    <div class="flex justify-between items-center">
-                                        <h3 class="text-xl font-bold text-white">Wheat</h3>
-                                        <span class="text-xs font-bold bg-gray-500 text-white px-2 py-1 rounded-full">Moderate</span>
-                                    </div>
                                     <p class="text-sm text-gray-400 mt-2">Expected Profit: <b class="text-white">₹20,000-25,000/acre</b></p>
-                                    <div class="mt-4">
-                                        <h4 class="text-sm font-semibold text-green-400">Advantages</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>Stable market</li><li>Government procurement</li></ul>
+                                </div>
+                                <div class="bg-gray-800/50 p-4 rounded-lg border border-red-500">
+                                    <div class="flex justify-between items-center">
+                                        <h3 class="text-xl font-bold text-white">Maize</h3>
+                                        <span class="text-xs font-bold bg-red-500 text-white px-2 py-1 rounded-full">Not Recommended</span>
                                     </div>
-                                     <div class="mt-3">
-                                        <h4 class="text-sm font-semibold text-red-400">Challenges</h4>
-                                        <ul class="text-xs text-gray-300 list-disc list-inside mt-1 space-y-1"><li>Requires good irrigation</li><li>Competition from neighboring states</li></ul>
-                                    </div>
-                                    <button class="mt-4 text-sm w-full text-center py-2 bg-gray-700 rounded-md hover:bg-gray-600">View Detailed Guide</button>
+                                    <p class="text-sm text-gray-400 mt-2">High risk of Fall Armyworm pest in region.</p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Calendar Content -->
+                        <div id="fertilizer-content" class="advisory-tab-content hidden">
+                            <h3 class="font-semibold text-white mb-4">Guide for Cotton Cultivation</h3>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-gray-800/50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-lg text-green-400">Fertilizer Schedule</h4>
+                                    <ul class="mt-2 space-y-3 text-sm text-gray-300">
+                                        <li><b>Basal Dose:</b> Apply 25kg Urea, 50kg DAP, and 25kg MOP per acre at sowing.</li>
+                                        <li><b>First Top Dressing (30-35 days):</b> Apply 25kg Urea per acre.</li>
+                                        <li><b>Second Top Dressing (55-60 days):</b> Apply 25kg Urea per acre.</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-800/50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-lg text-red-400">Pest Management</h4>
+                                    <ul class="mt-2 space-y-3 text-sm text-gray-300">
+                                        <li><b>Pink Bollworm:</b> Use Pheromone traps (5/acre). Spray Thiodicarb 75 WP @ 1gm/litre of water.</li>
+                                        <li><b>Aphids/Jassids:</b> Spray Imidacloprid 17.8 SL @ 0.3 ml/litre of water.</li>
+                                        <li class="mt-4 p-2 bg-yellow-900/30 border-l-4 border-yellow-500 text-yellow-200"><b>Safety:</b> Always wear protective gloves and mask during application. Spray during evening hours.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="calendar-content" class="advisory-tab-content hidden">
                            <h3 class="font-semibold text-white mb-4">Seasonal Crop Calendar</h3>
                            <div class="space-y-6">
@@ -418,7 +424,7 @@
                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Cotton:</b> June 15 - July 15</div>
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Soybean:</b> June 20 - July 10</div>
-                                       <div class="bg-gray-800/50 p-3 rounded-md"><b>Sugarcane:</b> June 1 - July 31</div>
+                                       <div class="bg-gray-800/50 p-3 rounded-md"><b>Paddy:</b> June 1 - July 31</div>
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Maize:</b> June 15 - July 30</div>
                                    </div>
                                </div>
@@ -427,7 +433,7 @@
                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Wheat:</b> Nov 15 - Dec 15</div>
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Gram:</b> Oct 15 - Nov 15</div>
-                                       <div class="bg-gray-800/50 p-3 rounded-md"><b>Mustard:</b> Oct 1 - Nov 30</div>
+                                       <div class="bg-gray-800/50 p-3 rounded-md"><b>Jowar:</b> Oct 1 - Nov 30</div>
                                        <div class="bg-gray-800/50 p-3 rounded-md"><b>Onion:</b> Nov 1 - Dec 31</div>
                                    </div>
                                </div>
@@ -438,8 +444,89 @@
             </div>
         </section>
 
-        <!-- Market Prices Section -->
-        <section id="market" class="py-20">
+        <section id="pest-diagnosis" class="py-20">
+             <div class="container mx-auto px-6">
+                 <div class="text-center reveal mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white">Identify Pests & Diseases Instantly</h2>
+                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Upload a photo of your affected crop to get an instant, AI-powered diagnosis and treatment plan.</p>
+                </div>
+                <div class="max-w-5xl mx-auto glassmorphism p-6 rounded-xl reveal grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <i data-lucide="camera" class="w-16 h-16 text-green-400 mx-auto md:mx-0"></i>
+                        <h3 class="text-2xl font-bold mt-4">Take a Photo, Get a Solution</h3>
+                        <p class="text-gray-400 mt-2 mb-6">Our AI analyzes your photo against a vast database of plant diseases to provide accurate results in seconds.</p>
+                        <button id="upload-pest-photo-btn" class="btn-primary font-bold py-3 px-6 rounded-lg">Upload Crop Photo</button>
+                    </div>
+                    <div id="pest-result-container" class="bg-gray-900/50 p-6 rounded-lg hidden">
+                        <h4 class="font-bold text-lg text-white">Diagnosis Result:</h4>
+                        <div class="mt-4 flex items-start space-x-4">
+                            <img src="https://placehold.co/100x100/ef4444/ffffff?text=Pest" class="w-24 h-24 rounded-md object-cover" alt="Pink Bollworm">
+                            <div>
+                                <h5 class="font-bold text-xl text-red-400">Pink Bollworm</h5>
+                                <p class="text-sm text-gray-300 mt-1">A common and destructive pest for cotton crops. Immediate action is required.</p>
+                                <a href="#advisory" class="text-sm text-green-400 hover:underline mt-2 inline-block">View Treatment Guide &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="schemes" class="py-20 bg-[#1f2937]">
+            <div class="container mx-auto px-6">
+                 <div class="text-center reveal mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white">Government Schemes & Subsidies</h2>
+                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Stay updated with the latest government support programs for farmers.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+                    <div class="feature-card p-6 rounded-lg">
+                        <i data-lucide="banknote" class="w-12 h-12 text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">PM-KISAN Scheme</h3>
+                        <p class="text-gray-400">Financial support of ₹6,000 per year for eligible farmer families.</p>
+                        <a href="#" class="text-green-400 font-semibold mt-4 inline-block hover:underline">Learn More &rarr;</a>
+                    </div>
+                     <div class="feature-card p-6 rounded-lg">
+                        <i data-lucide="umbrella" class="w-12 h-12 text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">PM Fasal Bima Yojana</h3>
+                        <p class="text-gray-400">Crop insurance against yield losses due to natural calamities.</p>
+                        <a href="#" class="text-green-400 font-semibold mt-4 inline-block hover:underline">Get Insurance &rarr;</a>
+                    </div>
+                    <div class="feature-card p-6 rounded-lg">
+                        <i data-lucide="tractor" class="w-12 h-12 text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Subsidy on Machinery</h3>
+                        <p class="text-gray-400">Get subsidies on purchasing modern farm equipment like tractors and rotavators.</p>
+                        <a href="#" class="text-green-400 font-semibold mt-4 inline-block hover:underline">Check Eligibility &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="learning-hub" class="py-20">
+             <div class="container mx-auto px-6">
+                 <div class="text-center reveal mb-12">
+                     <h2 class="text-3xl md:text-4xl font-bold text-white">Farming Techniques Learning Hub</h2>
+                    <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Watch videos from experts on modern agricultural practices to improve your yield.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                    <div class="feature-card p-4 rounded-lg">
+                        <div class="aspect-w-16 aspect-h-9">
+                            <iframe class="w-full h-full rounded-md" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mt-4">Advanced Drip Irrigation for Cotton Fields</h3>
+                        <p class="text-sm text-gray-400">Learn how to save water and increase yield.</p>
+                    </div>
+                     <div class="feature-card p-4 rounded-lg">
+                         <div class="aspect-w-16 aspect-h-9">
+                            <iframe class="w-full h-full rounded-md" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <h3 class="font-bold text-white text-lg mt-4">Making Organic Pesticides at Home</h3>
+                        <p class="text-sm text-gray-400">Cost-effective and safe solutions for pest control.</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="market" class="py-20 bg-[#1f2937]">
             <div class="container mx-auto px-6">
                 <div class="text-center reveal mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-white">Real-Time Market Prices</h2>
@@ -447,16 +534,13 @@
                 </div>
 
                 <div class="max-w-5xl mx-auto glassmorphism p-4 sm:p-6 rounded-xl reveal">
-                    <!-- Market Tabs -->
                     <div id="market-tabs" class="flex flex-wrap items-center justify-center sm:justify-start space-x-2 rounded-lg p-1 bg-gray-900/50 mb-6">
                         <button data-tab="live" class="market-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-active">Live Prices</button>
                         <button data-tab="trends" class="market-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Price Trends</button>
                         <button data-tab="compare" class="market-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Market Compare</button>
                     </div>
 
-                    <!-- Market Content -->
                     <div id="market-content-area">
-                        <!-- Live Prices Content -->
                         <div id="live-content" class="market-tab-content">
                              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
@@ -464,30 +548,28 @@
                                         <h3 class="text-xl font-bold text-white">Cotton</h3>
                                         <span class="text-xs font-bold bg-green-500 text-black px-2 py-1 rounded-full">High Demand</span>
                                     </div>
-                                    <p class="text-sm text-gray-400">Pune APMC</p>
-                                    <p class="text-4xl font-bold text-green-400 mt-4">₹5,200 <span class="text-xl text-gray-400">/quintal</span></p>
-                                    <p class="text-sm text-green-400 font-semibold mt-1">+5.05% vs yesterday</p>
+                                    <p class="text-sm text-gray-400">Hyderabad (Malakpet) Market</p>
+                                    <p class="text-4xl font-bold text-green-400 mt-4">₹7,150 <span class="text-xl text-gray-400">/quintal</span></p>
+                                    <p class="text-sm text-green-400 font-semibold mt-1">+2.15% vs yesterday</p>
                                 </div>
                                 <div class="bg-gray-800/50 p-4 rounded-lg">
                                     <div class="flex justify-between items-center">
-                                        <h3 class="text-xl font-bold text-white">Wheat</h3>
+                                        <h3 class="text-xl font-bold text-white">Paddy (Sona Masuri)</h3>
                                         <span class="text-xs font-bold bg-yellow-500 text-black px-2 py-1 rounded-full">Medium Demand</span>
                                     </div>
-                                    <p class="text-sm text-gray-400">Indore Mandi</p>
-                                    <p class="text-4xl font-bold text-green-400 mt-4">₹2,150 <span class="text-xl text-gray-400">/quintal</span></p>
-                                    <p class="text-sm text-gray-400 font-semibold mt-1">vs yesterday</p>
+                                    <p class="text-sm text-gray-400">Nalgonda Market</p>
+                                    <p class="text-4xl font-bold text-green-400 mt-4">₹2,800 <span class="text-xl text-gray-400">/quintal</span></p>
+                                    <p class="text-sm text-red-400 font-semibold mt-1">-0.50% vs yesterday</p>
                                 </div>
                              </div>
                         </div>
-                        <!-- Trends Content -->
                         <div id="trends-content" class="market-tab-content hidden">
                             <h3 class="font-semibold text-white mb-4">Price Trends (Last 7 Days)</h3>
                             <div>
                                 <canvas id="priceTrendChart"></canvas>
                             </div>
                         </div>
-                         <!-- Compare Content -->
-                        <div id="compare-content" class="market-tab-content hidden">
+                         <div id="compare-content" class="market-tab-content hidden">
                            <h3 class="font-semibold text-white mb-4">Nearby Market Comparison (Cotton)</h3>
                             <div>
                                 <canvas id="marketCompareChart"></canvas>
@@ -498,128 +580,43 @@
             </div>
         </section>
 
-        <!-- Voice-Enabled Farm Support Section -->
         <section id="voice" class="py-20 bg-[#1f2937]">
             <div class="container mx-auto px-6">
                 <div class="text-center reveal mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-white">Voice-Enabled Farm Support</h2>
                     <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">Get instant farming advice through voice commands in your native language. Designed for farmers with low digital literacy.</p>
                 </div>
-
                 <div class="max-w-5xl mx-auto glassmorphism p-4 sm:p-6 rounded-xl reveal">
-                    <!-- Voice Tabs -->
                     <div id="voice-tabs" class="flex flex-wrap items-center justify-center sm:justify-start space-x-2 rounded-lg p-1 bg-gray-900/50 mb-6">
                         <button data-tab="demo" class="voice-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-active">Voice Demo</button>
                         <button data-tab="languages" class="voice-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Languages</button>
-                        <button data-tab="conversations" class="voice-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">Conversations</button>
-                        <button data-tab="howitworks" class="voice-tab-btn flex-1 px-4 py-2 text-sm rounded-md transition-colors duration-300 tab-inactive">How It Works</button>
                     </div>
-
-                    <!-- Voice Content -->
                     <div id="voice-content-area">
-                        <!-- Voice Demo Content -->
                         <div id="demo-content" class="voice-tab-content">
-                            <div class="bg-gray-800/50 p-6 rounded-lg">
-                                <div class="flex justify-between items-center mb-4">
-                                    <h3 class="font-semibold text-white">Interactive Voice Assistant</h3>
-                                    <select id="voice-language-select" class="bg-gray-700 border border-gray-600 rounded-md px-3 py-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-green-500">
-                                        <option value="hi">हिंदी (Hindi)</option>
-                                        <option value="te">తెలుగు (Telugu)</option>
-                                    </select>
+                            <div class="bg-gray-800/50 p-6 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                                <div class="text-center">
+                                    <h4 class="font-semibold text-lg mb-4">Press & Speak Your Question</h4>
+                                    <button id="mic-button" class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300 hover:bg-green-600 shadow-lg shadow-green-500/20">
+                                        <i data-lucide="mic" class="w-10 h-10 text-white"></i>
+                                    </button>
+                                    <p id="mic-status" class="mt-4 text-gray-400 text-sm">Press to get a demo response</p>
                                 </div>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                                    <!-- Voice Input -->
-                                    <div class="text-center">
-                                        <h4 class="font-semibold text-lg">Voice Input</h4>
-                                        <div class="mt-4">
-                                            <button id="mic-button" class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto transition-all duration-300 hover:bg-green-600 shadow-lg shadow-green-500/20">
-                                                <i data-lucide="mic" class="w-10 h-10 text-white"></i>
-                                            </button>
-                                            <p id="mic-status" class="mt-4 text-gray-400 text-sm">Press and hold to speak</p>
-                                        </div>
-                                         <div class="mt-6 text-left">
-                                            <h5 class="text-sm font-semibold text-gray-300">Sample Questions:</h5>
-                                            <ul class="text-xs text-gray-400 mt-2 space-y-1">
-                                                <li>"मेरी कपास में कीड़े हैं, क्या करूँ?" (Hindi)</li>
-                                                <li>"Cotton crop yellowing problem" (English)</li>
-                                                 <li>"పత్తి పంటకు పచ్చదోమ నివారణ?" (Telugu)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <!-- AI Response -->
-                                    <div>
-                                        <h4 class="font-semibold text-lg">AI Assistant Response</h4>
-                                        <div id="ai-response-container" class="mt-4 p-4 bg-gray-900/50 rounded-lg min-h-[200px] flex items-center justify-center">
-                                            <p class="text-gray-500">Response will appear here...</p>
-                                        </div>
-                                        <div class="flex items-center space-x-2 mt-4">
-                                            <button class="btn-secondary px-4 py-2 text-sm rounded-lg flex-1">Download</button>
-                                            <button class="btn-secondary px-4 py-2 text-sm rounded-lg flex-1">Share</button>
-                                        </div>
+                                <div>
+                                    <h4 class="font-semibold text-lg">AI Assistant Response</h4>
+                                    <div id="ai-response-container" class="mt-4 p-4 bg-gray-900/50 rounded-lg min-h-[150px] flex items-center justify-center">
+                                        <p class="text-gray-500">Response will appear here...</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Languages Content -->
                         <div id="languages-content" class="voice-tab-content hidden">
                            <h3 class="font-semibold text-white mb-4">Multi-Language Support</h3>
-                            <p class="text-gray-400 mb-6">Our AI is trained to understand regional variations and farming terminology across 10+ Indian languages.</p>
                              <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
                                 <div class="feature-card p-4 rounded-lg text-center">हिन्दी (Hindi)</div>
                                 <div class="feature-card p-4 rounded-lg text-center">English</div>
                                 <div class="feature-card p-4 rounded-lg text-center">తెలుగు (Telugu)</div>
                                 <div class="feature-card p-4 rounded-lg text-center">தமிழ் (Tamil)</div>
-                                <div class="feature-card p-4 rounded-lg text-center">ગુજરાતી (Gujarati)</div>
-                                <div class="feature-card p-4 rounded-lg text-center">मराठी (Marathi)</div>
-                                <div class="feature-card p-4 rounded-lg text-center">বাংলা (Bengali)</div>
-                                <div class="feature-card p-4 rounded-lg text-center">ਪੰਜਾਬੀ (Punjabi)</div>
                              </div>
-                        </div>
-                        <!-- Conversations Content -->
-                        <div id="conversations-content" class="voice-tab-content hidden">
-                            <h3 class="font-semibold text-white mb-4">Conversation Examples</h3>
-                            <div class="space-y-6">
-                                <div class="bg-gray-800/50 p-4 rounded-lg">
-                                    <p class="text-sm font-semibold text-gray-400 mb-2">Hindi Conversation</p>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div><b>Farmer's Question:</b> "मेरी कपास की फसल में कीड़े लगे हैं, क्या करूँ?"</div>
-                                        <div><b>AI Response:</b> "आपकी कपास में कौन से कीड़े दिख रहे हैं? क्या आप फसल की तस्वीर भेज सकते हैं?"</div>
-                                    </div>
-                                </div>
-                                <div class="bg-gray-800/50 p-4 rounded-lg">
-                                    <p class="text-sm font-semibold text-gray-400 mb-2">English Conversation</p>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div><b>Farmer's Question:</b> "My crop leaves are turning yellow."</div>
-                                        <div><b>AI Response:</b> "Yellowing can be due to nitrogen deficiency or a pest. Please upload a photo for accurate diagnosis."</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- How It Works Content -->
-                        <div id="howitworks-content" class="voice-tab-content hidden">
-                           <h3 class="font-semibold text-white mb-4">Getting Started with Voice Assistance</h3>
-                           <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                               <div class="space-y-2">
-                                   <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">1</div>
-                                   <h4 class="font-semibold text-white">Select Language</h4>
-                                   <p class="text-sm text-gray-400">Choose your preferred language from 10+ options.</p>
-                               </div>
-                               <div class="space-y-2">
-                                   <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">2</div>
-                                   <h4 class="font-semibold text-white">Press & Speak</h4>
-                                   <p class="text-sm text-gray-400">Hold the microphone button and speak your question.</p>
-                               </div>
-                               <div class="space-y-2">
-                                   <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">3</div>
-                                   <h4 class="font-semibold text-white">Listen to Answer</h4>
-                                   <p class="text-sm text-gray-400">Get a detailed audio response in your language.</p>
-                               </div>
-                               <div class="space-y-2">
-                                   <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto text-2xl font-bold text-white">4</div>
-                                   <h4 class="font-semibold text-white">Take Action</h4>
-                                   <p class="text-sm text-gray-400">Follow the recommendations for better farming.</p>
-                               </div>
-                           </div>
                         </div>
                     </div>
                 </div>
@@ -630,7 +627,7 @@
 
     <footer class="bg-[#1f2937] border-t border-gray-700 py-12">
         <div class="container mx-auto px-6 text-center text-gray-400">
-             <p>&copy; 2025 CodeCatalyst. All Rights Reserved.</p>
+             <p>&copy; 2025 Annadata Sahayaka Seva. All Rights Reserved.</p>
              <p class="text-sm mt-2">Empowering farmers with data-driven insights.</p>
         </div>
     </footer>
@@ -662,7 +659,7 @@
                     button.classList.remove('tab-inactive');
                     
                     // Update content
-                    document.querySelectorAll(`.${contentClass}`).forEach(content => {
+                    document.getElementById(contentContainerId).querySelectorAll(`.${contentClass}`).forEach(content => {
                         content.classList.toggle('hidden', content.id !== `${tabName}-content`);
                     });
                 });
@@ -674,16 +671,29 @@
             setupTabs('market-tabs', 'market-content-area', 'market-tab-btn', 'market-tab-content');
             setupTabs('voice-tabs', 'voice-content-area', 'voice-tab-btn', 'voice-tab-content');
 
+             // --- EMERGENCY ALERT LOGIC ---
+            const emergencyAlert = document.getElementById('emergency-alert');
+            const closeAlertBtn = document.getElementById('close-alert-btn');
+            // Simulate showing alert after a delay
+            setTimeout(() => {
+                emergencyAlert.classList.remove('hidden');
+            }, 3000);
+            closeAlertBtn.addEventListener('click', () => {
+                emergencyAlert.classList.add('hidden');
+            });
+
             // --- INTERACTIVE ADVISORY FORM ---
             const getRecommendationsBtn = document.getElementById('get-recommendations-btn');
             getRecommendationsBtn.addEventListener('click', () => {
-                // Simulate loading and switch to recommendations tab
-                const advisoryTabs = document.getElementById('advisory-tabs');
-                advisoryTabs.querySelector('[data-tab="details"]').classList.replace('tab-active', 'tab-inactive');
-                advisoryTabs.querySelector('[data-tab="recommendations"]').classList.replace('tab-inactive', 'tab-active');
-
-                document.getElementById('details-content').classList.add('hidden');
-                document.getElementById('recommendations-content').classList.remove('hidden');
+                document.getElementById('advisory-tabs').querySelector('[data-tab="recommendations"]').click();
+            });
+            
+            // --- PEST DIAGNOSIS SIMULATION ---
+            const uploadPestPhotoBtn = document.getElementById('upload-pest-photo-btn');
+            const pestResultContainer = document.getElementById('pest-result-container');
+            uploadPestPhotoBtn.addEventListener('click', () => {
+                // Simulate analysis and show result
+                pestResultContainer.classList.remove('hidden');
             });
 
 
@@ -691,18 +701,6 @@
             const micButton = document.getElementById('mic-button');
             const micStatus = document.getElementById('mic-status');
             const aiResponseContainer = document.getElementById('ai-response-container');
-            const voiceLangSelect = document.getElementById('voice-language-select');
-
-            const responses = {
-                hi: {
-                    native: "आपकी कपास में बॉलवर्म का संक्रमण हो सकता है। नीम का तेल स्प्रे करें या बायो-पेस्टिसाइड का उपयोग करें।",
-                    translation: "Your cotton crop may have bollworm infestation. Apply neem oil spray or use bio-pesticide treatment."
-                },
-                te: {
-                    native: "మీ పత్తి పంటకు గులాబి పురుగు సోకి ఉండవచ్చు. వేప నూనె స్ప్రే చేయండి లేదా బయో-పెస్టిసైడ్ ఉపయోగించండి.",
-                    translation: "Your cotton crop may have pink bollworm infestation. Apply neem oil spray or use bio-pesticide treatment."
-                }
-            };
 
             micButton.addEventListener('click', () => {
                 micButton.classList.add('animate-pulse', 'bg-red-500');
@@ -713,19 +711,16 @@
                 setTimeout(() => {
                     micButton.classList.remove('animate-pulse', 'bg-red-500');
                     micButton.classList.add('bg-green-500');
-                    micStatus.textContent = 'Press and hold to speak';
+                    micStatus.textContent = 'Press to get a demo response';
                     
-                    const selectedLang = voiceLangSelect.value;
-                    const response = responses[selectedLang];
-
                     aiResponseContainer.innerHTML = `
                         <div class="text-left w-full">
-                            <p class="text-white">${response.native}</p>
+                            <p class="text-white font-semibold">"పత్తి పంటకు పచ్చదోమ నివారణ?"</p>
                             <hr class="border-gray-700 my-2">
-                            <p class="text-sm text-gray-400"><b>English Translation:</b> ${response.translation}</p>
+                            <p class="text-sm text-gray-300"><b>AI Response:</b> For Jassids, spray Imidacloprid 17.8 SL at a rate of 0.3 ml per litre of water.</p>
                         </div>
                     `;
-                }, 3000); // Simulate 3 seconds of listening
+                }, 2500);
             });
 
 
@@ -735,10 +730,10 @@
                 new Chart(priceTrendCtx, {
                     type: 'line',
                     data: {
-                        labels: ['Nov 15', 'Nov 16', 'Nov 17', 'Nov 18', 'Nov 19', 'Nov 20', 'Nov 21'],
+                        labels: ['Sep 11', 'Sep 12', 'Sep 13', 'Sep 14', 'Sep 15', 'Sep 16', 'Sep 17'],
                         datasets: [{
                             label: 'Cotton Price (₹/quintal)',
-                            data: [4800, 4850, 4950, 4900, 5100, 5150, 5200],
+                            data: [6950, 6980, 7050, 7020, 7100, 7120, 7150],
                             borderColor: '#22c55e',
                             backgroundColor: 'rgba(34, 197, 94, 0.1)',
                             fill: true,
@@ -761,10 +756,10 @@
                 new Chart(marketCompareCtx, {
                     type: 'bar',
                     data: {
-                        labels: ['Pune APMC', 'Ahmednagar Mandi', 'Solapur APMC'],
+                        labels: ['Hyderabad', 'Warangal', 'Nalgonda'],
                         datasets: [{
                             label: 'Cotton Price (₹/quintal)',
-                            data: [5200, 5300, 5350],
+                            data: [7150, 7200, 7100],
                             backgroundColor: ['#22c55e', '#16a34a', '#15803d'],
                             borderRadius: 4
                         }]
@@ -789,8 +784,6 @@
                     const elementVisible = 150;
                     if (elementTop < windowHeight - elementVisible) {
                         reveals[i].classList.add('active');
-                    } else {
-                        reveals[i].classList.remove('active');
                     }
                 }
             };
@@ -800,5 +793,3 @@
     </script>
 </body>
 </html>
-
-
